@@ -66,3 +66,6 @@ print(f"Count {counter}")
 #     if key not in di
 
 # print(dict(zip(dic1, dic2)))
+
+
+# Split a string into a list of words.
