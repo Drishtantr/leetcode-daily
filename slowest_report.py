@@ -9,23 +9,14 @@ import io
 import sys
 import time
 
+from vendor.pytorch_toolkit import top_k
+
 sys.path.insert(0, "old")
 with contextlib.redirect_stdout(io.StringIO()):
     import recursion
 
 REPEAT = 200
 TOP_N = 3
-
-
-def top_k(scores: list[float], k: int) -> list[tuple[int, float]]:
-    """The ``k`` highest scores as ``(index, score)`` pairs, best first."""
-    if k <= 0:
-        raise ValueError(f"k must be positive, got {k}")
-    if k > len(scores):
-        raise ValueError(f"k ({k}) cannot exceed len(scores) ({len(scores)})")
-
-    ranked = sorted(enumerate(scores), key=lambda pair: pair[1], reverse=True)
-    return ranked[:k]
 
 
 SOLUTIONS = [

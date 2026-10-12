@@ -9,6 +9,8 @@ import contextlib
 import io
 import sys
 
+from vendor.pytorch_toolkit import pass_rate
+
 # Importing old/recursion.py runs its demo prints at module scope, so the
 # import is done with stdout muted.
 sys.path.insert(0, "old")
@@ -16,18 +18,6 @@ with contextlib.redirect_stdout(io.StringIO()):
     import recursion
 
 MIN_PASS_RATE = 0.9
-
-
-def pass_rate(passed: int, total: int) -> float:
-    """Share of cases that passed, as a percentage from 0 to 100."""
-    if total <= 0:
-        raise ValueError(f"total must be positive, got {total}")
-    if passed < 0:
-        raise ValueError(f"passed must be non-negative, got {passed}")
-    if passed > total:
-        raise ValueError(f"passed ({passed}) cannot exceed total ({total})")
-
-    return 100.0 * passed / total
 
 
 def _printed(fn, *args):
